@@ -4,7 +4,7 @@ A sleek and user-friendly mobile dating app screen with left and right swipes, b
 
 
 ## Expo Demo
-  ![Screenshot (15)-1](https://github.com/wave2211/Product_App_react_native/assets/112957348/9e3227db-bb82-4c31-99d2-b42f8c1418bb)
+![Screenshot (43)-1](https://github.com/wave2211/Dating_App/assets/112957348/169ae092-eb71-4f8d-84e8-e4a18772cf71)
 
 ## Screenshots
 
