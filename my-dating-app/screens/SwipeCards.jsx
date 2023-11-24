@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, Animated,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, Animated, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import SwipeChoices from './SwipeChoices';
 import { useNavigation } from "@react-navigation/native";
@@ -9,11 +9,10 @@ const { height, width } = Dimensions.get('window')
 export default function SwipeCards({ item, isFirst, swipe, ...rest }) {
   const navigation = useNavigation();
 
-  const handleOnPress = (getId) => {
-    console.log(getId)
-    navigation.navigate("ProfilesDetails", {
-      profileId: getId
-    })
+  const handleOnPress = () => {
+    navigation.navigate("ProfileDetails", {
+      id: item.id, 
+    });
   }
 
   const likeOpacity = swipe.x.interpolate({
@@ -56,6 +55,7 @@ export default function SwipeCards({ item, isFirst, swipe, ...rest }) {
     )
   }, []);
 
+
   return (
     <Animated.View
       style={{
@@ -64,22 +64,21 @@ export default function SwipeCards({ item, isFirst, swipe, ...rest }) {
       }}
       {...rest}
     >
-      <Image source={{ uri: item.image }} 
-      style={styles.imageProfile} />
-      <LinearGradient
-        colors={['transparent', 'rgba(0,0,0,0.7)']}
-        style={styles.overlay}
-      >
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.location}>{item.location}</Text>
-        {/* <TouchableOpacity onPress={() => handleOnPress(item.id)}> 
-          <Text style={styles.location}>profile</Text>
-         </TouchableOpacity> */}
-      </LinearGradient>
+      <TouchableOpacity onPress={() => handleOnPress(item.id)}>
+        <Image source={{ uri: item.image }} style={styles.imageProfile} />
+        <LinearGradient
+          colors={['transparent', 'rgba(0,0,0,0.7)']}
+          style={styles.overlay}
+        >
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.location}>{item.location}</Text>
+          {/* Uncommented TouchableOpacity for navigation */}
+        </LinearGradient>
+      </TouchableOpacity>
       {isFirst && swipeChoices()}
     </Animated.View>
-    
   );
+
 }
 
 const styles = StyleSheet.create({

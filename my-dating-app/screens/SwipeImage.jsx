@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Animated, StyleSheet, Text, View, PanResponder, TouchableOpacity, Image } from 'react-native';
+import { Animated, StyleSheet, Text, View, PanResponder, TouchableOpacity, Image,ImageBackground } from 'react-native';
 import SwipeCards from './SwipeCards';
 
 export default function SwipeImage({ children }) {
@@ -61,6 +61,10 @@ export default function SwipeImage({ children }) {
   );
 
   return (
+    <ImageBackground
+      source={{ uri: 'https://img.freepik.com/premium-photo/composition-valentine-s-day-bouquet-red-roses-hearts-pink-background-copyspace_163828-1402.jpg' }}
+      style={styles.backgroundImage}
+    >
     <View style={styles.container}>
       {data.map((item, index) => {
         let isFirst = index === 0;
@@ -94,12 +98,18 @@ export default function SwipeImage({ children }) {
         </TouchableOpacity>
       </View>
     </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  backgroundImage: {
+    flex: 1,
+    paddingHorizontal: 50,
+    resizeMode: 'cover',
   },
   buttonContainer: {
     width: '100%',
